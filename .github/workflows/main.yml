@@ -1,0 +1,32 @@
+name: Artifacts and Caching Exapmles
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5.0.0
+
+      - name: Setup Node JS
+        uses: actions/setup-node@v6.0.0
+        with:
+          node-version: 22.x
+          cache: 'nmp'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Next JS App
+        run: npm buil
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v5.0.0
+        with:
+          name: Folder-Storing-Build
+          path: out/
+        
